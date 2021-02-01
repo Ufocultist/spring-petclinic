@@ -1,6 +1,9 @@
 #!groovy
 pipeline {
   agent none
+  environment {
+    DOCKER_BUILDKIT='1'
+  }
   stages {
     stage('Maven Install') {
       agent {
