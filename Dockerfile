@@ -1,4 +1,4 @@
-FROM anapsix/alpine-java 
+FROM --platform=linux/arm64 anapsix/alpine-java 
 LABEL maintainer="ufocultist@mail.ru" 
 COPY /target/spring-petclinic-2.4.0.BUILD-SNAPSHOT.jar /home/spring-petclinic-2.4.0.BUILD-SNAPSHOT.jar 
 CMD ["java","-jar","/home/spring-petclinic-2.4.0.BUILD-SNAPSHOT.jar"]
