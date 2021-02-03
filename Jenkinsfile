@@ -8,7 +8,7 @@ pipeline {
     stage('Maven Install') {
       agent {
         docker {
-          image 'maven:3.6.0'
+          image 'maven:3.5.0'
         }
       }
       steps {
@@ -18,7 +18,7 @@ pipeline {
     stage('Docker Build') {
       agent any
       steps {
-        sh 'docker build -t ufocultist/spring-petclinic .'
+        sh 'docker buildx build --platform linux/arm64 -t ufocultist/spring-petclinic .'
       }
     }
     stage('Deploy Spring Boot Application') {
