@@ -18,7 +18,7 @@ pipeline {
     stage('Docker Build') {
       agent any
       steps {
-        sh 'docker buildx build --platform linux/arm64 -t ufocultist/spring-petclinic .'
+        sh 'docker build -t ufocultist/spring-petclinic .'
       }
     }
     stage('Deploy Spring Boot Application') {
