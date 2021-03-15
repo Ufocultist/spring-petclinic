@@ -35,5 +35,6 @@ pipeline {
           sh 'docker push ufocultist/spring-petclinic:latest'
         }
       }
+   }
   }
 }
