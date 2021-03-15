@@ -24,11 +24,16 @@ pipeline {
     stage('Deploy Spring Boot Application') {
 	agent any
 	steps {
-	//Remove maven-build-container if it exists
-	//sh " docker rm -f java-deploy-container"
-	//sh "docker run --name java-deploy-container --volumes-from maven-build-container -d -p 8080:8080 denisdbell/petclinic-deploy"
 	sh 'docker run -d -p 8081:8080 ufocultist/spring-petclinic'
 	}
 	}
+    stage('Docker Push') {
+      agent any
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+          sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+          sh 'docker push ufocultist/spring-petclinic:latest'
+        }
+      }
   }
 }
