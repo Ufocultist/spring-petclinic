@@ -4,7 +4,6 @@ pipeline {
   environment {
     registry = "ufocultist/spring-petclinic"
     registryCredential = 'dockerhub'
-    dockerImage = ''
     DOCKER_BUILDKIT='1'
   }
   stages {
