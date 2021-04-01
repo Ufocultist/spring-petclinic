@@ -20,8 +20,10 @@ pipeline {
     stage('Docker Build') {
       agent any
       steps {
+          script { 
 //        sh 'docker build -t ufocultist/spring-petclinic .'
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+              dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          }
       }
     }
     stage('Deploy Spring Boot Application') {
