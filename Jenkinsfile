@@ -1,11 +1,11 @@
 #!groovy
 pipeline {
-  agent none
   environment {
     registry = "ufocultist/spring-petclinic"
     registryCredential = 'dockerhub'
-    DOCKER_BUILDKIT='1'
+    dockerImage = ''
   }
+  agent none
   stages {
     stage('Maven Install') {
       agent {
@@ -20,7 +20,8 @@ pipeline {
     stage('Docker Build') {
       agent any
       steps {
-        sh 'docker build -t ufocultist/spring-petclinic .'
+//        sh 'docker build -t ufocultist/spring-petclinic .'
+          dockerImage = docker.build registry + ":$BUILD_NUMBER"
       }
     }
     stage('Deploy Spring Boot Application') {
