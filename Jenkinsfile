@@ -16,7 +16,7 @@ pipeline {
       steps {
           script {
 	      docker.withRegistry( '', registryCredential ) {
-	      image = docker.image('ufocultist/spring-petclinic')
+	      image = docker.image('ufocultist/spring-petclinic:tag')
 	      image.pull()
               }
           }
