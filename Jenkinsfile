@@ -11,15 +11,17 @@ pipeline {
   }
   agent none
   stages {
-//    stage('Docker Pull') {
-//      agent any
-//      steps {
-//          script {
-//              dockerImage = docker.build registry + ":$BUILD_NUMBER"
-//	      dockerImage.pull()
-//          }
-//      }
-//    }
+    stage('Docker Pull') {
+      agent any
+      steps {
+          script {
+	      docker.withRegistry( '', registryCredential ) {
+	      image = docker.image('ufocultist/spring-petclinic')
+	      image.pull()
+              }
+          }
+      }
+    }
     stage('Deploy Spring Boot Application') {
 	agent any
 	steps {
