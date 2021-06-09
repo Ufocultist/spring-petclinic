@@ -29,7 +29,7 @@ pipeline {
     stage('Deploy Spring Boot Application') {
 	agent any
 	steps {
-	sh 'docker run -d -p 8081:8080 ufocultist/spring-petclinic'
+	sh 'docker run -d -p 8083:8080 ufocultist/spring-petclinic'
 	}
 	}
     stage('Docker Push') {
