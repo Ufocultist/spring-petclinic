@@ -16,7 +16,7 @@ pipeline {
       steps {
           script {
 	      docker.withRegistry( '', registryCredential ) {
-	      image = docker.image('ufocultist/spring-petclinic:tag')
+	      image = docker.image registry + ":$BUILD_NUMBER"
 	      image.pull()
               }
           }
