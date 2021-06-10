@@ -15,10 +15,9 @@ pipeline {
       agent any
       steps {
           script {
-	      docker.withRegistry( '', registryCredential ) {
-	      image = docker.image($image:$tag)
-	      image.pull()
-              }
+	      dockerImage = docker.build registry + ${env.BUILD_NUMBER}
+	      dockerImage.pull()
+              
           }
       }
     }
